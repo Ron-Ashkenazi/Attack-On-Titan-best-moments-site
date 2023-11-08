@@ -1,0 +1,44 @@
+.bar-chart-h2 {
+  font-size: 26px;
+  text-align: center;
+}
+
+.div-average-total {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.average-score-p {
+  font-size: 22px;
+}
+
+.total-votes-p {
+  font-size: 22px;
+}
+
+@media only screen and (max-width: 750px) {
+  .bar-chart-h2 {
+    font-size: 17px;
+  }
+  .average-score-p {
+    font-size: 14px;
+  }
+
+  .total-votes-p {
+    font-size: 14px;
+  }
+
+  /* Styles for X-axis labels */
+  .apexcharts-xaxis-label {
+    font-size: 12px; /* Adjust the font size for X-axis labels */
+  }
+
+  /* Styles for Y-axis labels */
+  .apexcharts-yaxis-label {
+    font-size: 12px; /* Adjust the font size for Y-axis labels */
+  }
+
+  .div-average-total {
+    margin-top: -50px !important;
+  }
+}

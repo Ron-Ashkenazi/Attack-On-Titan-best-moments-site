@@ -1,0 +1,81 @@
+.aot-head-to-head-page-root {
+  height: 100%;
+}
+
+.aot-head-to-head-page,
+.middle-card-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.middle-card {
+  text-align: center;
+  background-color: white;
+  padding: 10px;
+  max-width: 210px;
+}
+
+.middle-card button {
+  padding: 10px 16px;
+  font-size: 16px;
+  background-color: rgba(41, 64, 35, 0.877);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.middle-card button:hover {
+  background-color: rgba(41, 64, 35, 0.699);
+}
+
+.right-button {
+  margin-left: 20px;
+}
+
+.left-button {
+  margin-right: 20px;
+}
+
+.tie-button,
+.refresh-button {
+  margin-top: 20px;
+}
+
+.aot-head-to-head-card {
+  background-color: white;
+  width: min(650px, 90%);
+  display: flex;
+  /* Use flexbox to control card size */
+  flex-direction: column;
+  margin: 20px;
+}
+
+.aot-head-to-head-card .moment-card-image-size {
+  height: 290px;
+  width: 490px;
+  flex: 1;
+}
+
+.aot-head-to-head-card .moment-card-paragraph {
+  font-size: 18px;
+  margin-left: 25px;
+  margin-right: 25px;
+  text-align: left;
+}
+
+@media only screen and (max-width: 1270px) {
+  .aot-head-to-head-page {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .middle-card-div {
+    transform: scale(0.7); /* Adjust the scale value as needed */
+    margin-top: -20px;
+    margin-bottom: -20px;
+  }
+}

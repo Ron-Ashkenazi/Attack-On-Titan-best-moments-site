@@ -1,0 +1,198 @@
+.aot-home-page-root {
+  height: 100%;
+}
+
+.welcome-div {
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  min-height: 700px;
+}
+
+.text-div {
+  justify-content: center;
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
+.title-p {
+  margin-left: 40px;
+  font-size: 400%;
+  padding: 20px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+.explain-p {
+  margin-left: 40px;
+  margin-right: 40px;
+  padding: 20px;
+  font-size: 160%;
+}
+
+.background-image-div {
+  background: linear-gradient(
+      to right,
+      rgb(0, 0, 0) 1%,
+      rgb(255, 255, 255),
+      rgb(255, 255, 255)
+    ),
+    url("../Images/homepageBig.jpg");
+
+  background-blend-mode: multiply;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.info-card {
+  margin-top: 20px;
+  max-width: 1200px;
+  padding: 30px;
+  color: white;
+  background: linear-gradient(135deg, rgb(41, 64, 35), rgb(64, 53, 53) 70%);
+  text-align: center;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.info-div {
+  display: flex;
+  justify-content: center;
+}
+
+.info-div p {
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .title-p {
+    font-size: 40px;
+  }
+
+  .explain-p {
+    font-size: 15px;
+  }
+
+  .aot-home-card .show-card-title {
+    font-size: 20px !important;
+  }
+
+  .aot-home-card .show-card-paragraph {
+    font-size: 13px !important;
+  }
+
+  .info-div p {
+    font-size: 13px;
+  }
+
+  .info-div h1 {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .aot-home-page-horizontal-div {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .aot-home-card {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .welcome-div {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+  }
+  .title-p {
+    font-size: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0;
+    text-align: center;
+  }
+
+  .explain-p {
+    font-size: 13px;
+    padding: 0;
+    text-align: center;
+  }
+  .background-image-div {
+    height: 300px;
+  }
+
+  .background-image-div {
+    background: linear-gradient(
+        rgb(0, 0, 0) 1%,
+        rgb(255, 255, 255),
+        rgb(255, 255, 255)
+      ),
+      url("../Images/homepageSmall.jpg");
+    background-blend-mode: multiply;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .info-card {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
+
+.aot-home-page-horizontal-div {
+  display: grid;
+  grid-template-columns: min(400px, 30%) min(400px, 30%) min(400px, 30%);
+  grid-gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  justify-content: center;
+}
+
+.aot-home-card {
+  background-color: white;
+  justify-content: center;
+  height: min-content;
+  transition: transform 1.5 ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.aot-home-card:active {
+  transform: scale(0.96);
+}
+
+.aot-home-card .show-card-image-size {
+  width: 85%;
+  flex: 1;
+}
+
+.aot-home-card .show-card-title {
+  font-size: 28px;
+}
+
+.aot-home-card .show-card-paragraph {
+  font-size: 18px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.card-link {
+  text-decoration: none;
+}
+
+/* Customize the link's color when it's not visited */
+.card-link:link {
+  color: #000;
+  /* Replace with your desired color */
+}
+
+/* Customize the link's color when it's visited */
+.card-link:visited {
+  color: #000;
+  /* Replace with your desired color */
+}

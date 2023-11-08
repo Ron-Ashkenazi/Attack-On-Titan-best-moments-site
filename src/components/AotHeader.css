@@ -1,0 +1,21 @@
+.aot-header {
+  text-align: center;
+  background-color: rgb(41, 64, 35);
+}
+
+.aot-header-image {
+  width: 380px;
+  margin: 7px;
+}
+
+@media screen and (max-width: 750px) {
+  .header-container {
+    width: 1000px;
+    /* Adjust this value according to your preference */
+    margin: 0 auto;
+    /* This centers the header container horizontally */
+  }
+  .aot-header-image {
+    width: min(300px, 60%);
+  }
+}

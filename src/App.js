@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import AotHomePage from "./pages/AotHomePage";
+import AotRankPage from "./pages/AotRankPage";
+import AotHeadToHeadPage from "./pages/AotHeadToHeadPage";
+import AotHardcoreRank from "./pages/AotHardcoreRank";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-root" style={{ height: "100%" }}>
+      <Router>
+        <Routes>
+          <Route path="/attack-on-titan" element={<AotHomePage />} />
+          <Route path="/aot-rank" element={<AotRankPage />} />
+          <Route path="/aot-head-to-head" element={<AotHeadToHeadPage />} />
+          <Route path="/aot-hardcore-rank" element={<AotHardcoreRank />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

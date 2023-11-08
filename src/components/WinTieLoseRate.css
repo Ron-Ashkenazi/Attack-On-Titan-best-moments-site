@@ -1,0 +1,59 @@
+.win-tie-lose-rate-div {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: -20px;
+}
+
+.general-h3 {
+  color: white;
+  border-radius: 5px;
+  width: fit-content;
+  padding: 10px;
+}
+
+.win-h3 {
+  background-color: green;
+}
+
+.tie-h3 {
+  background-color: rgb(221, 221, 45);
+}
+
+.lose-h3 {
+  background-color: red;
+}
+
+.column-div {
+  justify-content: center;
+  margin-bottom: -5px;
+}
+
+.win-tie-lose-p {
+  margin-top: -15px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+.win-tie-lose-p-total-votes {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+}
+
+@media only screen and (max-width: 750px) {
+  .general-h3 {
+    font-size: 12px;
+    padding: 5px;
+  }
+  .win-tie-lose-p {
+    font-size: 12px;
+    margin-top: -10px;
+  }
+  .win-tie-lose-p-total-votes {
+    font-size: 14px;
+  }
+  .win-tie-lose-rate-div {
+    margin-top: -10px;
+  }
+}

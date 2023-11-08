@@ -1,0 +1,197 @@
+.aot-rank-page-root {
+  height: 100%;
+}
+
+.loading-img-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+.sword {
+  width: 200px;
+  height: 200px;
+}
+
+.aot-rank-page-center-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aot-rank-card,
+.aot-rank-card-bar-chart,
+.aot-rank-moments-tracker {
+  background-color: white;
+  display: flex;
+  /* Use flexbox to control card size */
+  flex-direction: column;
+  margin: 20px;
+}
+
+.aot-rank-card {
+  width: min(650px, 90%);
+}
+
+.aot-rank-card-bar-chart {
+  width: min(630px, 90%);
+}
+
+.aot-rank-card .moment-card-paragraph {
+  font-size: 18px;
+  margin-left: 25px;
+  margin-right: 25px;
+  text-align: left;
+}
+
+.form-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+  margin-top: -15px;
+}
+
+.form-container input[type="number"] {
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+}
+
+.form-container button,
+.general-button {
+  padding: 10px 16px;
+  font-size: 16px;
+  background-color: rgba(41, 64, 35, 0.877);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.general-button {
+  width: fit-content;
+  margin: 17px;
+  animation: glowing 1.7s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.general-button:hover {
+  animation-play-state: paused;
+  background-color: rgba(41, 64, 35, 0.699);
+}
+
+@keyframes glowing {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(41, 64, 35, 0.877),
+      0 0 10px rgba(41, 64, 35, 0.877), 0 0 20px rgba(41, 64, 35, 0.877);
+    transform: scale(1);
+  }
+
+  50% {
+    box-shadow: 0 0 15px rgba(41, 64, 35, 0.877),
+      0 0 25px rgba(41, 64, 35, 0.877), 0 0 35px rgba(41, 64, 35, 0.877);
+    transform: scale(1.1);
+  }
+}
+
+.form-container button:hover {
+  background-color: rgba(41, 64, 35, 0.699);
+}
+
+.all-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.submit-rank-div {
+  display: flex;
+  justify-content: center;
+  gap: 10%;
+  width: 30%;
+}
+
+.error-message-aot-rank {
+  color: #ba3939;
+  background: #ffe0e0;
+  border: 1px solid #a33a3a;
+  padding: 8px;
+}
+
+.moment-selector-div {
+  margin-top: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+
+  gap: 10%;
+}
+
+.moment-selector {
+  width: 50%;
+}
+
+.moment-selector-bold {
+  background-color: #ddd;
+}
+
+.continue-div h3 {
+  text-align: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.continue-div {
+  display: flex;
+  justify-content: center;
+}
+
+.stats-tracker-container {
+  width: min(630px, 90%);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 750px) {
+  .aot-rank-page-center-div {
+    flex-direction: column;
+  }
+  .form-container button,
+  .continue-div button {
+    padding: 8px 11px !important;
+    font-size: 10px !important;
+  }
+  .form-container h3,
+  .continue-div h3 {
+    font-size: 14px !important;
+  }
+
+  .sword {
+    width: 150px;
+    height: 150px;
+  }
+
+  .moment-selector {
+    width: 150px;
+  }
+
+  .error-message-aot-rank {
+    width: 250px;
+    font-size: 10px;
+  }
+
+  .modal-content h3 {
+    font-size: 14px !important;
+  }
+}
