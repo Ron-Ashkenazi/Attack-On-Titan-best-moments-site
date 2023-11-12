@@ -44,7 +44,7 @@ const AotHomePage = () => {
             include the final part. The moments refer to events in the series,
             so if you haven't finished it yet, you may be exposed to spoilers.
           </p>
-          <p>There are a total of 46 moments from the show.</p>
+          <p>There are a total of 48 moments from the show.</p>
           <p>
             In the "Relax Ranking" every time you rank a moment it will be saved
             to the site stats. In the "Hardcore Experience" your ranks for the

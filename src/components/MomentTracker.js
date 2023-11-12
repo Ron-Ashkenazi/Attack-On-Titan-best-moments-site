@@ -1,30 +1,16 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React from "react";
 import "./MomentTracker.css";
 
 function MomentTracker(props) {
-  const [votedMoments, setVotedMoments] = useState([]);
-
-  const handleVote = useCallback(
-    (momentNumber) => {
-      if (!votedMoments.includes(momentNumber)) {
-        setVotedMoments([...votedMoments, momentNumber]);
-      }
-    },
-    [votedMoments]
-  );
-
-  useEffect(() => {
-    handleVote(props.updateTracker);
-  }, [props.updateTracker, handleVote]);
-
   const renderCircles = () => {
     const circles = [];
 
-    for (let i = 0; i < props.totalMoments; i++) {
+    for (let i = 0; i < 48; i++) {
+      let isVoted = false;
       if (props.votesArray[i] > 0 && props.votesArray[i] < 11) {
-        handleVote(i);
+        isVoted = true;
       }
-      const isVoted = votedMoments.includes(i);
+
       circles.push(
         <div
           key={i}

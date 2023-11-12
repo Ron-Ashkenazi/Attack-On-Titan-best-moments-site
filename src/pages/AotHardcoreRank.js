@@ -30,20 +30,15 @@ const AotHardcoreRank = () => {
     useState(currentMomentIndex);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const [votesArray, setVotesArray] = useState([]);
-
-  const [updateTracker, setUpdateTracker] = useState(-1);
-
   const [allMomentsVoted, setAllMomentsVoted] = useState(false);
 
   const [nextPart, setNextPart] = useState(false);
   const [finished, setFinished] = useState(false);
-
+  const [votesArray, setVotesArray] = useState([]);
   const [arrays, setArrays] = useState([]);
-  const [arraysIndex, setArraysIndex] = useState();
-
   const [finalTableArray, setFinalTableArray] = useState({});
+
+  const [arraysIndex, setArraysIndex] = useState();
 
   const [finishOrReset, setFinishOrReset] = useState("");
 
@@ -74,20 +69,23 @@ const AotHardcoreRank = () => {
     };
 
     fetchData();
-    setVotesArray(createVotesArray(momentsData.length));
-  }, [momentsData.length]);
+  }, []);
 
   // useEffects functions
   useEffect(() => {
     const storedVotes = JSON.parse(localStorage.getItem("votes")) || [];
     const storedNextPart =
       JSON.parse(localStorage.getItem("nextPart")) || Boolean;
+    const storedArrays = JSON.parse(localStorage.getItem("arrays")) || {};
     const storedFinished =
       JSON.parse(localStorage.getItem("finished")) || Boolean;
     const storedFinishedTable =
       JSON.parse(localStorage.getItem("finishedTable")) || {};
+    const storedLowestIndex = JSON.parse(localStorage.getItem("lowestIndex"));
 
     setVotesArray(storedVotes);
+    setArrays(storedArrays);
+    setArraysIndex(storedLowestIndex);
     setNextPart(storedNextPart);
     setFinished(storedFinished);
 
@@ -105,6 +103,10 @@ const AotHardcoreRank = () => {
   }, [nextPart]);
 
   useEffect(() => {
+    localStorage.setItem("arrays", JSON.stringify(arrays));
+  }, [arrays]);
+
+  useEffect(() => {
     localStorage.setItem("finishedTable", JSON.stringify(finalTableArray));
   }, [finalTableArray]);
 
@@ -112,37 +114,28 @@ const AotHardcoreRank = () => {
     localStorage.setItem("finished", JSON.stringify(finished));
   }, [finished]);
 
-  useEffect(() => {
-    if (momentsData.length > 0) {
-      if (votesArray.length === momentsData?.length) {
-        if (votesArray.every(Number.isInteger)) {
-          setAllMomentsVoted(true);
-        }
-      }
-    } else {
-      setAllMomentsVoted(false);
-    }
-  }, [votesArray, momentsData.length]);
+  useEffect(
+    () => {
+      if (votesArray.length === 48) {
+        let allVotesValid = true;
 
-  useEffect(() => {
-    const arrays = [[], [], [], [], [], [], [], [], [], []];
-    let lowestVote = 11;
-    for (let i = 0; i < votesArray.length; i++) {
-      const vote = votesArray[i];
-      if (vote - 1 < lowestVote) {
-        lowestVote = vote - 1;
+        for (let i = 0; i < votesArray.length; i++) {
+          const vote = votesArray[i];
+
+          if (vote === null || vote <= 0 || vote >= 11 || vote === undefined) {
+            allVotesValid = false;
+            break;
+          }
+        }
+
+        setAllMomentsVoted(allVotesValid);
+      } else {
+        setAllMomentsVoted(false);
       }
-      const moment = {
-        id: momentsData[i].id,
-        column1: momentsData[i].title,
-        column2: momentsData[i].season,
-        column3: momentsData[i].episode,
-      };
-      arrays[vote - 1].push(moment);
-    }
-    setArraysIndex(lowestVote);
-    setArrays(arrays);
-  }, [allMomentsVoted, momentsData, votesArray]);
+    },
+    [votesArray],
+    []
+  );
 
   const createFinalTable = () => {
     const finalArray = [];
@@ -183,16 +176,11 @@ const AotHardcoreRank = () => {
     return number % 1 === 0;
   }
 
-  function createVotesArray(length) {
-    return Array(length).fill(0);
-  }
-
   const handleChangeIndex = (index, newNum) => {
     const newNumAsNumber = parseFloat(newNum);
     const newVotesArray = [...votesArray];
     newVotesArray[index] = newNumAsNumber;
     setVotesArray(newVotesArray);
-    setUpdateTracker(index);
   };
 
   const updateArraysOrder = (newOrder) => {
@@ -209,6 +197,32 @@ const AotHardcoreRank = () => {
     setNextPart(false);
     setFinalTableArray({});
     setFinished(false);
+    setArraysIndex({});
+    setArrays([]);
+    localStorage.removeItem("lowestIndex");
+  };
+
+  const createArrays = () => {
+    const arrays = [[], [], [], [], [], [], [], [], [], []];
+    let lowestVote = 11;
+
+    for (let i = 0; i < votesArray.length; i++) {
+      const vote = votesArray[i];
+      if (vote - 1 < lowestVote) {
+        lowestVote = vote - 1;
+      }
+      const moment = {
+        id: momentsData[i]?.id,
+        column1: momentsData[i]?.title,
+        column2: momentsData[i]?.season,
+        column3: momentsData[i]?.episode,
+      };
+
+      arrays[vote - 1]?.push(moment);
+    }
+    localStorage.setItem("lowestIndex", JSON.stringify(lowestVote));
+    setArraysIndex(lowestVote);
+    setArrays(arrays);
   };
 
   // Navigations functions
@@ -270,6 +284,8 @@ const AotHardcoreRank = () => {
 
   const handleSubmitAllVotes = (event) => {
     event.preventDefault();
+
+    createArrays();
 
     fetch(
       "https://aot-site-server.onrender.com/api/aot/moments-relax-stats/updateAllVotes",
@@ -405,9 +421,13 @@ const AotHardcoreRank = () => {
                   >
                     Reset votes
                   </button>
-                  <button onClick={handlePrint}>
-                    Save table to share with friends
-                  </button>
+                  {finished ? (
+                    <button onClick={handlePrint}>
+                      Save table to share with friends
+                    </button>
+                  ) : (
+                    <></>
+                  )}
 
                   <Modal
                     isOpen={isModalOpen}
@@ -430,11 +450,13 @@ const AotHardcoreRank = () => {
                     <FinalTable table={finalTableArray} />
                   </div>
                 ) : (
-                  <DraggableTable
-                    className="draggable-table-aot-hardcore"
-                    data={arrays[arraysIndex]}
-                    onUpdateOrder={updateArraysOrder}
-                  ></DraggableTable>
+                  <div>
+                    <DraggableTable
+                      className="draggable-table-aot-hardcore"
+                      data={arrays[arraysIndex]}
+                      onUpdateOrder={updateArraysOrder}
+                    ></DraggableTable>
+                  </div>
                 )}
               </div>
             </div>
@@ -518,8 +540,6 @@ const AotHardcoreRank = () => {
               <div className="stats-tracker-container">
                 <Card className="card aot-rank-moments-tracker">
                   <MomentTracker
-                    totalMoments={momentsData.length}
-                    updateTracker={updateTracker}
                     votesArray={votesArray}
                     currentMomentIndex={currentMomentIndex}
                   />
@@ -534,8 +554,8 @@ const AotHardcoreRank = () => {
                   {allMomentsVoted ? (
                     <div className="continue-div">
                       <h3 className="next-step-h">
-                        Well done! You have voted to all moments! Press to
-                        continue:
+                        Well done! You have voted to all moments! (Please wait a
+                        few seconds after pressing the button)
                       </h3>
                       <button
                         className="general-button"
