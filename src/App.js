@@ -11,7 +11,7 @@ function App() {
     <div className="app-root" style={{ height: "100%" }}>
       <Router>
         <Routes>
-          <Route path="/attack-on-titan" element={<AotHomePage />} />
+          <Route path="/" element={<AotHomePage />} />
           <Route path="/aot-rank" element={<AotRankPage />} />
           <Route path="/aot-head-to-head" element={<AotHeadToHeadPage />} />
           <Route path="/aot-hardcore-rank" element={<AotHardcoreRank />} />

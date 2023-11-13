@@ -6,7 +6,7 @@ import "./AotHeader.css";
 function AotHeader() {
   return (
     <header className="aot-header">
-      <Link to="/attack-on-titan" className="card-link">
+      <Link to="/" className="card-link">
         <img className="aot-header-image" src={aotTitleLogo} alt="" />
       </Link>
     </header>

@@ -41,8 +41,9 @@ const AotHomePage = () => {
           <h1>Important Info</h1>
           <p>
             If there was any doubt, this is a SPOILER ALERT for the whole show,
-            include the final part. The moments refer to events in the series,
-            so if you haven't finished it yet, you may be exposed to spoilers.
+            include the series finale. The moments refer to events in the
+            series, so if you haven't finished it yet, you may be exposed to
+            spoilers.
           </p>
           <p>There are a total of 48 moments from the show.</p>
           <p>
@@ -50,6 +51,11 @@ const AotHomePage = () => {
             to the site stats. In the "Hardcore Experience" your ranks for the
             moments will be sent to the site stats only after you have ranked
             ALL moments, only then you will be able to send your votes.
+          </p>
+          <p>
+            The site is on free server so sometimes it won't work the fastest
+            and even won't work at all. Try not to refresh it alot and please be
+            patient.
           </p>
         </Card>
       </div>
@@ -68,7 +74,7 @@ const AotHomePage = () => {
         </Card>
 
         <Card
-          onClick={() => navigate("aot-rank-")}
+          onClick={() => navigate("aot-rank")}
           className="card aot-home-card"
         >
           <Link to="/aot-rank" className="card-link">
@@ -90,6 +96,7 @@ const AotHomePage = () => {
           </Link>
         </Card>
       </div>
+      <div className="home-gap-div"></div>
     </div>
   );
 };
