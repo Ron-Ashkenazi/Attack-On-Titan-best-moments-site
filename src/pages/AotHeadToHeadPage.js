@@ -20,8 +20,15 @@ const AotHeadToHeadPage = () => {
   const [loading, setLoading] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  const [firstMoment, setFirstMoment] = useState(0);
-  const [secondMoment, setSecondMoment] = useState(1);
+  const num1temp = Math.floor(Math.random() * 48);
+  let num2temp = Math.floor(Math.random() * 48);
+
+  while (num2temp === num1temp) {
+    num2temp = Math.floor(Math.random() * 48);
+  }
+
+  const [firstMoment, setFirstMoment] = useState(num1temp);
+  const [secondMoment, setSecondMoment] = useState(num2temp);
 
   const [arraySize, setArraySize] = useState(0);
   const [momentsData, setMomentsData] = useState([]);
@@ -31,6 +38,18 @@ const AotHeadToHeadPage = () => {
 
   const [selectedchoice, setSelectedchoice] = useState("");
   const [modalString, setModalString] = useState("");
+
+  // Changing moments function
+  const refreshMoments = () => {
+    const num1 = Math.floor(Math.random() * arraySize);
+    let num2 = Math.floor(Math.random() * arraySize);
+
+    while (num2 === num1) {
+      num2 = Math.floor(Math.random() * arraySize);
+    }
+    setFirstMoment(num1);
+    setSecondMoment(num2);
+  };
 
   // Different choices variable and function
   const choiceHandler = (choice) => {
@@ -117,18 +136,6 @@ const AotHeadToHeadPage = () => {
       window.removeEventListener("resize", updateScreenSize);
     };
   }, []);
-
-  // Changing moments function
-  const refreshMoments = () => {
-    const num1 = Math.floor(Math.random() * arraySize);
-    let num2 = Math.floor(Math.random() * arraySize);
-
-    while (num2 === num1) {
-      num2 = Math.floor(Math.random() * arraySize);
-    }
-    setFirstMoment(num1);
-    setSecondMoment(num2);
-  };
 
   // Sending result to the DB
   const handleSubmit = (option) => {

@@ -31,7 +31,7 @@ const AotHomePage = () => {
           <p className="explain-p">
             In this site you will be able to relive the series best moments and
             rank them by your personal preferences. There are three different
-            platforms of ranking.
+            ways of ranking them.
           </p>
         </div>
         <div className="background-image-div"></div>
