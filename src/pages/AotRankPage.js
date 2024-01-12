@@ -13,6 +13,8 @@ import swordGif from "../Images/swordGif.gif";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { URL1, URL2 } from "./urls";
+
 const AotRankPage = () => {
   // useStates
   const [loading, setLoading] = useState(false);
@@ -32,15 +34,8 @@ const AotRankPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-      }, 3500);
-      const response = await fetch(
-        "https://aot-site-server.onrender.com/api/aot/moments/"
-      );
-      const response2 = await fetch(
-        "https://aot-site-server.onrender.com/api/aot/moments-relax-stats"
-      );
+      const response = await fetch(URL1);
+      const response2 = await fetch(URL2);
 
       const data = await response.json();
       const data2 = await response2.json();
@@ -52,6 +47,7 @@ const AotRankPage = () => {
       });
       setMomentsDataStats(data2);
       setMomentsData(momentsWithUrls);
+      setLoading(false);
     };
 
     fetchData();
@@ -108,7 +104,7 @@ const AotRankPage = () => {
 
     setSelectedNumber("");
 
-    fetch("https://aot-site-server.onrender.com/api/aot/moments-relax-stats", {
+    fetch(URL2, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

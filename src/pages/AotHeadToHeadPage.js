@@ -14,6 +14,7 @@ import swordGif from "../Images/swordGif.gif";
 import Modal from "../components/Modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { URL1, URL3 } from "./urls";
 
 const AotHeadToHeadPage = () => {
   // useStates
@@ -80,15 +81,8 @@ const AotHeadToHeadPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-      }, 3500);
-      const response = await fetch(
-        "https://aot-site-server.onrender.com/api/aot/moments/"
-      );
-      const response2 = await fetch(
-        "https://aot-site-server.onrender.com/api/aot/moments-hth-stats"
-      );
+      const response = await fetch(URL1);
+      const response2 = await fetch(URL3);
 
       const data = await response.json();
       const data2 = await response2.json();
@@ -103,6 +97,7 @@ const AotHeadToHeadPage = () => {
 
       setMomentsData(momentsWithUrls);
       setMomentsDataStats(data2);
+      setLoading(false);
     };
 
     fetchData();
@@ -145,7 +140,7 @@ const AotHeadToHeadPage = () => {
       label: option,
     };
 
-    fetch("https://aot-site-server.onrender.com/api/aot/moments-hth-stats", {
+    fetch(URL3, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

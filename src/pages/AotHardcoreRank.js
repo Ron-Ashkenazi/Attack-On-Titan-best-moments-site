@@ -16,6 +16,8 @@ import swordGif from "../Images/swordGif.gif";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { URL1, URL2, URL4 } from "./urls";
+
 const AotHardcoreRank = () => {
   // useStates
   const [loading, setLoading] = useState(false);
@@ -46,15 +48,8 @@ const AotHardcoreRank = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-      }, 3500);
-      const response = await fetch(
-        "https://aot-site-server.onrender.com/api/aot/moments/"
-      );
-      const response2 = await fetch(
-        "https://aot-site-server.onrender.com/api/aot/moments-relax-stats"
-      );
+      const response = await fetch(URL1);
+      const response2 = await fetch(URL2);
 
       const data = await response.json();
       const data2 = await response2.json();
@@ -66,6 +61,7 @@ const AotHardcoreRank = () => {
       });
       setMomentsDataStats(data2);
       setMomentsData(momentsWithUrls);
+      setLoading(false);
     };
 
     fetchData();
@@ -286,17 +282,13 @@ const AotHardcoreRank = () => {
     event.preventDefault();
 
     createArrays();
-
-    fetch(
-      "https://aot-site-server.onrender.com/api/aot/moments-relax-stats/updateAllVotes",
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(votesArray),
-      }
-    )
+    fetch(URL4, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(votesArray),
+    })
       .then((response) => response.json())
       .then(() => {
         // Show success toast
