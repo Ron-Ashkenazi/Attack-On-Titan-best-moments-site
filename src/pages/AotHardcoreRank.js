@@ -1,5 +1,4 @@
 import "./AotHardcoreRank.css";
-
 import MomemntCard from "../components/MomentCard";
 import Card from "../components/UI/Card";
 import BarChart from "../components/BarChart";
@@ -16,9 +15,11 @@ import swordGif from "../Images/swordGif.gif";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { URL1, URL2, URL4 } from "./urls";
-
 const AotHardcoreRank = () => {
+  const URL1 = process.env.REACT_APP_API_URL1;
+  const URL2 = process.env.REACT_APP_API_URL2;
+  const URL4 = process.env.REACT_APP_API_URL4;
+
   // useStates
   const [loading, setLoading] = useState(false);
   const [currentMomentIndex, setCurrentMomentIndex] = useState(0);
@@ -65,7 +66,7 @@ const AotHardcoreRank = () => {
     };
 
     fetchData();
-  }, []);
+  }, [URL1, URL2, URL4]);
 
   // useEffects functions
   useEffect(() => {

@@ -14,9 +14,11 @@ import swordGif from "../Images/swordGif.gif";
 import Modal from "../components/Modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { URL1, URL3 } from "./urls";
 
 const AotHeadToHeadPage = () => {
+  const URL1 = process.env.REACT_APP_API_URL1;
+  const URL3 = process.env.REACT_APP_API_URL3;
+
   // useStates
   const [loading, setLoading] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -101,7 +103,7 @@ const AotHeadToHeadPage = () => {
     };
 
     fetchData();
-  }, []);
+  }, [URL1, URL3]);
 
   // Helping functions
   const updateScreenSize = () => {

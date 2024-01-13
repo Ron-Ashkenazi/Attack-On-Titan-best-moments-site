@@ -13,9 +13,10 @@ import swordGif from "../Images/swordGif.gif";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { URL1, URL2 } from "./urls";
-
 const AotRankPage = () => {
+  const URL1 = process.env.REACT_APP_API_URL1;
+  const URL2 = process.env.REACT_APP_API_URL2;
+
   // useStates
   const [loading, setLoading] = useState(false);
   const [currentMomentIndex, setCurrentMomentIndex] = useState(0);
@@ -51,7 +52,7 @@ const AotRankPage = () => {
     };
 
     fetchData();
-  }, []);
+  }, [URL1, URL2]);
 
   // Helping functions
   function generateSlideURLs(baseURL, size) {
